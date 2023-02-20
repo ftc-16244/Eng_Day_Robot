@@ -77,7 +77,7 @@ public class Teleop_robot_Controls extends LinearOpMode {
          */
     left_motor = hardwareMap.get(DcMotor.class,"left_motor");
     right_motor = hardwareMap.get(DcMotor.class,"right_motor");
-    left_motor.setDirection(DcMotorSimple.Direction.FORWARD);
+    left_motor.setDirection(DcMotorSimple.Direction.REVERSE);
     right_motor.setDirection(DcMotorSimple.Direction.REVERSE);
     dump_bed = hardwareMap.get(Servo.class,"dump_bed");
     dump_bed.setPosition(lowered_bed);
@@ -95,8 +95,8 @@ public class Teleop_robot_Controls extends LinearOpMode {
             // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
             // This way it's also easy to just drive straight, or just turn.
-            drive = -gamepad1.left_stick_y;
-            turn  =  gamepad1.right_stick_x;
+            drive = -gamepad1.left_stick_y*0.35;
+            turn  =  gamepad1.right_stick_x*0.35;
 
             // Combine drive and turn for blended motion.
             left  = drive + turn;
